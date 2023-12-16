@@ -45,7 +45,7 @@
         <form method="post" enctype="multipart/form-data" id="uploadForm">
             {% csrf_token %}
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="uploadBtn" name="file" required>
+                <input type="file" class="custom-file-input" id="uploadBtn" name="file" multiple required>
                 <label class="custom-file-label" for="uploadBtn" id="fileLabel">Choose file</label>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Upload</button>
@@ -60,8 +60,9 @@
     <script>
         // Update the file label when a file is chosen
         document.getElementById('uploadBtn').addEventListener('change', function () {
-            var fileName = this.value.split("\\").pop();
-            document.getElementById('fileLabel').innerText = fileName;
+            var files = this.files;
+            var fileNames = Array.from(files).map(file => file.name).join(', ');
+            document.getElementById('fileLabel').innerText = fileNames;
         });
     </script>
 </body>
