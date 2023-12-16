@@ -41,12 +41,12 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mb-4">Fancy File Upload</h1>
+        <h1 class="mb-4">Files Upload</h1>
         <form method="post" enctype="multipart/form-data" id="uploadForm">
             {% csrf_token %}
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="uploadBtn" name="file" multiple required>
-                <label class="custom-file-label" for="uploadBtn" id="fileLabel">Choose file</label>
+                <label class="custom-file-label" for="uploadBtn" id="fileLabel">Choose files</label>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Upload</button>
         </form>

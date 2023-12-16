@@ -19,14 +19,18 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
-from files.views import upload_file
+from files.views import upload_files, browse_files, get_files, check_in, check_out
 from frive import settings
 
 urlpatterns = [
     path('__debug__/', include("debug_toolbar.urls")),
     path('admin/', admin.site.urls),
     # path('auth/', include('djoser.urls')),
-    path('upload/', upload_file, name='upload_file'),
+    path('', browse_files, name='browse_files'),
+    path('browse/', get_files, name='get_files'),
+    path('check-in/', check_in, name='check_in'),
+    path('check-out/', check_out, name='check_out'),
+    path('upload/', upload_files, name='upload_files'),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
