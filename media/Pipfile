@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-decouple = "*"
+mysqlclient = "*"
+django = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+django-debug-toolbar = "*"
+django-rest-swagger = "*"
+django-cors-headers = "*"
+pillow = "*"
+django-filter = "*"
+pyyaml = "*"
+django-seeding = "*"
+firebase-admin = "*"
+numpy = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

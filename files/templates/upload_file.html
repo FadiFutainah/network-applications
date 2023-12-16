@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-file-input {
+            cursor: pointer;
+        }
+
+        #uploadBtn {
+            display: none;
+        }
+
+        #fileLabel {
+            cursor: pointer;
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Fancy File Upload</h1>
+        <form method="post" enctype="multipart/form-data" id="uploadForm">
+            {% csrf_token %}
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="uploadBtn" name="file" required>
+                <label class="custom-file-label" for="uploadBtn" id="fileLabel">Choose file</label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Upload</button>
+        </form>
+    </div>
+
+    <!-- Add Bootstrap JS (optional, only if you need it) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // Update the file label when a file is chosen
+        document.getElementById('uploadBtn').addEventListener('change', function () {
+            var fileName = this.value.split("\\").pop();
+            document.getElementById('fileLabel').innerText = fileName;
+        });
+    </script>
+</body>
+</html>
