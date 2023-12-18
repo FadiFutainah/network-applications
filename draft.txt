@@ -1,0 +1,30 @@
+- database.
+- apis:
+    - get files.(done)
+    - upload files.(done)
+    - get my files.
+    - check-in.
+    - check-out.
+    - login.(done)
+    - logout.(done)
+    - signup.(done)
+    - create file group.(done)
+    - get report for file.
+    - get report for user.
+- clean up.
+- logging.
+- get report api.
+- ui:
+    - login.
+    - logout.
+    - browse.
+    - checkin.
+    - checkout.
+    - upload.
+    - failed.
+    - success.
+- dashboard.
+    - edit on the ui.
+    - get report for file.
+    - get report for user.
+- two nonfunctional requirements.
