@@ -13,6 +13,7 @@ uritemplate = "*"
 drf-spectacular = "*"
 django-debug-toolbar = "*"
 djoser = "*"
+locust = "*"
 
 [dev-packages]
 

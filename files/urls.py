@@ -6,8 +6,8 @@ from files.views import FileViewSet
 
 router = SimpleRouter()
 
-router.register('file', FileViewSet)
+router.register('file', FileViewSet, basename='file')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

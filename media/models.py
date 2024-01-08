@@ -7,7 +7,6 @@ class File(models.Model):
     file = models.FileField(null=True)
 
     def __str__(self):
-        from django.contrib.auth import authenticate
         return self.file.name
 
 

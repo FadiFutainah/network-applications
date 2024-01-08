@@ -1,19 +1,23 @@
-- database.
+- database (done).
 - apis:
-    - get files.(done)
-    - upload files.(done)
-    - get my files.
-    - check-in.
-    - check-out.
-    - login.(done)
-    - logout.(done)
+    - get files. (done)
+    - upload files. (done)
+    - get my files. (done)
+    - check-in. (done)
+    - check-out. (done)
+    - login. (done)
+    - logout. (done)
     - signup.(done)
     - create file group.(done)
-    - get report for file.
-    - get report for user.
-- clean up.
-- logging.
-- get report api.
+    - get report for file.(done)
+    - get report for user.(done)
+- bulk on everything.
+- exception handling.(not done)
+- test.
+- permissions:
+    - no two on the same file.(done)
+    - no one with outside his group.(done)
+- clean up and TODOs.
 - ui:
     - login.
     - logout.
@@ -27,4 +31,10 @@
     - edit on the ui.
     - get report for file.
     - get report for user.
+- stress testing.
 - two nonfunctional requirements.
+- refactor.
+- serializers.
+- optimization.
+- response template.
+- fix permissions.
