@@ -7,8 +7,7 @@ class File(models.Model):
     file = models.FileField(null=True)
 
     def __str__(self):
-        from django.contrib.auth import authenticate
-        return self.file.name
+        return self.file.name or 'Empty File object'
 
 
 class FilesGroup(models.Model):
@@ -22,18 +21,17 @@ class FilesGroup(models.Model):
 
 
 class Log(models.Model):
-    CHECK_IN = 'I'
-    CHECK_OUT = 'O'
-
-    OPERATION_CHOICES = [
-        (CHECK_IN, 'Check-in'),
-        (CHECK_OUT, 'Check-out')
+    ACTION_CHECK_IN = 'Check-in'
+    ACTION_CHECK_OUT = 'Check-out'
+    ACTION_CHOICES = [
+        (ACTION_CHECK_IN, ACTION_CHECK_IN),
+        (ACTION_CHECK_OUT, ACTION_CHECK_OUT)
     ]
 
-    timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     file = models.ForeignKey(File, on_delete=models.DO_NOTHING)
-    operation = models.CharField(max_length=1, choices=OPERATION_CHOICES)
+    action = models.CharField(max_length=10, choices=ACTION_CHOICES, default=ACTION_CHECK_IN)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Logging'
+        return f'{self.user.username} make {self.action} on {self.file}'

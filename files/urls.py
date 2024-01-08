@@ -1,13 +1,13 @@
-from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from files.views import FileViewSet, CheckinViewSet, CheckoutViewSet
 
-from rest_framework.routers import SimpleRouter
 
-from files.views import FileViewSet
+router = DefaultRouter()
 
-router = SimpleRouter()
+router.register('checkin', CheckinViewSet, basename='checkin')
+
+router.register('checkout', CheckoutViewSet, basename='checkout')
 
 router.register('file', FileViewSet, basename='file')
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls
