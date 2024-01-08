@@ -18,20 +18,25 @@
     - no two on the same file.(done)
     - no one with outside his group.(done)
 - clean up and TODOs.
+
+
+
 - ui:
-    - login.
-    - logout.
-    - browse.
-    - checkin.
-    - checkout.
-    - upload.
-    - failed.
-    - success.
+    - home.
+    - login.(semi done)
+    - logout.(semi done)
+    - browse.(done)
+    - checkin.(done)
+    - get mine.(done)
+    - checkout.(done)
+    - upload.(done)
+    - update result labels to messagebox.showinfo("No Selection", "No file selected")
 - dashboard.
     - edit on the ui.
     - get report for file.
     - get report for user.
 - stress testing.
+- update local storage.
 - two nonfunctional requirements.
 - refactor.
 - serializers.
