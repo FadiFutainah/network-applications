@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from logger.configuration import LOGGING_DICT
 
 load_dotenv()
 
@@ -135,3 +136,18 @@ SPECTACULAR_SETTINGS = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = str(os.getenv('EMAIL_BACKEND'))
+EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
+EMAIL_PORT = str(os.getenv('EMAIL_PORT'))
+EMAIL_USE_TLS = str(os.getenv('EMAIL_USE_TLS'))
+EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+
+LOGGING = LOGGING_DICT
+
+ADMINS = (
+    ('Suliman', 'sulimanawadstudy@gmail.com'),
+)
+
+
