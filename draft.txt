@@ -30,16 +30,16 @@
     - get mine.(done)
     - checkout.(done)
     - upload.(done)
-    - update result labels to messagebox.showinfo("No Selection", "No file selected")
+    - update result labels to messagebox.showinfo("No Selection", "No file selected") (done)
 - dashboard.
-    - edit on the ui.
-    - get report for file.
-    - get report for user.
+    - edit on the ui.(done)
+    - get report for file.(done)
+    - get report for user.(done)
 - stress testing.
-- update local storage.
-- two nonfunctional requirements.
-- refactor.
-- serializers.
-- optimization.
-- response template.
-- fix permissions.
+- update local storage.(done)
+- two nonfunctional requirements.(done)
+- refactor.(done)
+- serializers.(done)
+- optimization.(done)
+- response template.(done)
+- fix permissions.(done)

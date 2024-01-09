@@ -57,10 +57,10 @@ class AllFilesScreen(TkApp):
     def check_in(self):
         selected_files = [file for file, var in zip(self.file_list, self.checkbox_vars) if var.get()]
         id_list = [file['id'] for file in selected_files]
-        data = {'id_list': id_list}
-        url = 'http://127.0.0.1:8000/api/files/file/check-in/'
+        data = {"files_ids": id_list}
+        url = 'http://127.0.0.1:8000/api/files/checkin/'
         send_request(
-            'patch',
+            'post',
             url,
             data,
             self.pop_back,
@@ -74,14 +74,11 @@ class AllFilesScreen(TkApp):
         for file in self.file_list:
             var = tk.BooleanVar()
             self.checkbox_vars.append(var)
-            # TODO: remove this
-            file['name'] = 'filename'
-            file['editor'] = 'editor'
             checkbox = tk.Checkbutton(self.checkbox_frame, text=f"{file['name']} - editor is {file['editor']} ",
                                       variable=var)
             checkbox.pack(anchor="w")
 
-    def pop_back(self):
+    def pop_back(self, response=None):
         self.root.destroy()
         from home import HomeScreen
         HomeScreen()

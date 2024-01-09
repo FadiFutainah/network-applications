@@ -4,33 +4,38 @@ from tkinter import filedialog
 import requests
 
 from app import TkApp
-from crypto.rsa_signer import RSASigner
+from data import LocalStorage
 from request import send_request
 
 
-class UploadMarksScreen(TkApp):
+class UploadFileScreen(TkApp):
     def __init__(self):
         super().__init__()
-        self.root.title("Add Project Form")
+        self.root.title("Home Screen")
+        self.label = None
+        self.result_label = None
+        self.message_label = None
         self.select_button = None
-        self.upload_button = None
         self.file_path_label = None
         self.back_button = None
-        self.result_label = None
-        self.selected_file_path = None
+        self.upload_button = None
+        self.selected_file_path = ''
         self.render()
 
     def render(self):
+        self.message_label = tk.Label(self.root, text="Choose File to upload", font=('Helvetica', 14, 'bold'))
+        self.message_label.pack(pady=20)
+
         self.file_path_label = tk.Label(self.root, text="Selected File:")
         self.file_path_label.pack()
 
         self.select_button = tk.Button(self.root, text="Select File", command=self.select_file)
         self.select_button.pack()
 
-        self.upload_button = tk.Button(self.root, text="Upload File", command=self.upload_file)
-        self.upload_button.pack()
+        self.back_button = tk.Button(self.root, text="Upload", command=self.upload, width=15, height=2)
+        self.back_button.pack(pady=10)
 
-        self.back_button = tk.Button(self.root, text="Back to Home", command=self.back_to_home, width=15, height=2)
+        self.back_button = tk.Button(self.root, text="Back", command=self.pop_back, width=15, height=2)
         self.back_button.pack(pady=10)
 
         self.result_label = tk.Label(self.root, text="", wraplength=200)
@@ -41,26 +46,24 @@ class UploadMarksScreen(TkApp):
         self.file_path_label.config(text=f"Selected File: {file_path}")
         self.selected_file_path = file_path
 
-    def upload_file(self):
+    def upload(self):
         try:
-            files = {'file': open(self.selected_file_path, 'rb')}
-            with open(self.selected_file_path) as file:
-                file_data = file.read()
-            private_key, public_key = RSASigner.generate_key_pair()
-            signature = RSASigner.sign_data(private_key, file_data)
-            data = {'signature': signature, 'public_key': public_key}
-            # TODO: change URL
-            url = 'http://127.0.0.1:8000/api/system/mark/'
-            response = requests.post(url, files=files, data=data)
-            if response.status_code == 200:
+            file = {'file': open(self.selected_file_path, 'rb').read()}
+            local_storage = LocalStorage()
+            url = 'http://127.0.0.1:8000/api/files/file/'
+            headers = {}
+            token = local_storage.get_token()
+            if token:
+                headers['Authorization'] = f'Token {token}'
+            response = requests.post(url, headers=headers, files=file, data={})
+            if 200 <= response.status_code < 300:
                 tk.messagebox.showinfo('Success', 'File uploaded successfully!')
             else:
                 tk.messagebox.showerror('Error', f'Failed to upload file. Status code: {response.status_code}')
-
         except Exception as e:
             tk.messagebox.showerror('Error', f'An error occurred: {e}')
 
-    def back_to_home(self):
-        from home import HomeScreen
+    def pop_back(self):
         self.root.destroy()
+        from home import HomeScreen
         HomeScreen()

@@ -66,7 +66,7 @@ class MyFilesScreen(TkApp):
         self.update_radios()
 
     def get_files(self):
-        url = 'http://127.0.0.1:8000/api/files/file/?is_mine=true'
+        url = 'http://127.0.0.1:8000/api/files/file/?editing=true'
         send_request(
             'get',
             url,
@@ -77,19 +77,20 @@ class MyFilesScreen(TkApp):
 
     def check_out(self):
         try:
-            file = {'file': open(self.selected_file_path, 'rb')}
+            files = {'file': open(self.selected_file_path, 'rb')}
+            with open(self.selected_file_path) as file:
+                file_data = file.read()
             local_storage = LocalStorage()
             selected_index = self.radio_var.get()
             selected_id = self.file_list[int(selected_index)]['id']
-            # TODO: test
-            url = f'http://127.0.0.1:8000/api/files/file/check-out/{selected_id}/'
-            headers = {'Content-Type': 'application/json'}
+            url = f'http://127.0.0.1:8000/api/files/checkout/{selected_id}/'
+            headers = {}
             token = local_storage.get_token()
             if token:
                 headers['Authorization'] = f'Token {token}'
-            response = requests.patch(url, files=file, headers=headers)
+            response = requests.put(url, files=files, headers=headers)
             if response.status_code == 200:
-                self.set_state(response)
+                self.pop_back()
                 tk.messagebox.showinfo('Success', 'File uploaded successfully!')
             else:
                 tk.messagebox.showerror('Error', f'Failed to upload file. Status code: {response.status_code}')
@@ -100,9 +101,6 @@ class MyFilesScreen(TkApp):
         for radio_button in self.radio_frame.winfo_children():
             radio_button.destroy()
         for i, file in enumerate(self.file_list):
-            # TODO: remove this
-            file['name'] = 'filename'
-            file['editor'] = 'editor'
             radio_button = tk.Radiobutton(self.radio_frame, text=f"{file['name']} - editor is {file['editor']} ",
                                           variable=self.radio_var, value=i, font=("Helvetica", 10))
             radio_button.pack(anchor="w")

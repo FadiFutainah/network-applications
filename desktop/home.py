@@ -36,7 +36,7 @@ class HomeScreen(TkApp):
                                            width=15, height=2)
         self.currently_editing.pack(pady=10)
 
-        self.upload = tk.Button(self.root, text="Upload", command=self.upload_files, width=15, height=2)
+        self.upload = tk.Button(self.root, text="Upload", command=self.navigate_to_upload_file, width=15, height=2)
         self.upload.pack(pady=10)
 
         self.logout_button = tk.Button(self.root, text="Logout", command=self.logout, width=15, height=2)
@@ -71,8 +71,7 @@ class HomeScreen(TkApp):
         self.root.destroy()
         MyFilesScreen()
 
-    def upload_files(self):
-        pass
-        # from upload_files import UploadFilesScreen
-        # self.root.destroy()
-        # UploadFilesScreen()
+    def navigate_to_upload_file(self):
+        from upload_file import UploadFileScreen
+        self.root.destroy()
+        UploadFileScreen()

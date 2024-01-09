@@ -6,8 +6,6 @@ class TkApp:
     def __init__(self):
         self.root = tk.Toplevel()
         self.init_root()
-        # if LocalStorage.SESSION_KEY is not None:
-        #     self.aes_cipher = AESCipher(key=LocalStorage.SESSION_KEY)
 
     def init_root(self):
         window_width = 500
