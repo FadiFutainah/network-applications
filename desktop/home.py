@@ -24,9 +24,9 @@ class HomeScreen(TkApp):
 
         self.label = tk.Label(self.root, text="List of Files:")
         self.label.pack(pady=10)
-
-        self.checkbox_frame = tk.Frame(self.root)
-        self.checkbox_frame.pack()
+        #
+        # self.checkbox_frame = tk.Frame(self.root)
+        # self.checkbox_frame.pack()
 
         self.all_files_button = tk.Button(self.root, text="All files", command=self.navigate_to_all_files, width=15,
                                           height=2)
