@@ -77,9 +77,7 @@ class MyFilesScreen(TkApp):
 
     def check_out(self):
         try:
-            files = {'file': open(self.selected_file_path, 'rb')}
-            with open(self.selected_file_path) as file:
-                file_data = file.read()
+            files = {'file': open(self.selected_file_path, 'rb').read()}
             local_storage = LocalStorage()
             selected_index = self.radio_var.get()
             selected_id = self.file_list[int(selected_index)]['id']
